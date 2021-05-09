@@ -11,7 +11,7 @@ find_package(Threads REQUIRED)
 
 
 # Add source to this project's executable.
-add_subdirectory(hello)
+add_subdirectory(object)
 add_subdirectory(apps)
 
 # TODO: Add tests and install targets if needed.

@@ -34,6 +34,10 @@ set_target_properties(gmock PROPERTIES FOLDER extern)
 set_target_properties(gmock_main PROPERTIES FOLDER extern)
 
 
-add_executable(UnitTest unit_test.cpp)
-target_link_libraries(UnitTest gtest gmock gtest_main)
+add_executable(UnitTest "main_Test.cpp" "object_Test.cpp" "objectTest.h" "objectTest.cpp")
+target_compile_features(UnitTest PUBLIC cxx_std_17)
+
+target_link_libraries(UnitTest gtest gmock gtest_main object)
+
 add_test(AllTests UnitTest)
+gtest_discover_tests(UnitTest)
