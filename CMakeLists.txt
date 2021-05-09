@@ -9,7 +9,5 @@ project ("CMake_VS_Testing2")
 add_executable (CMake_VS_Testing2 "CMake_VS_Testing2.cpp" "CMake_VS_Testing2.h")
 
 # TODO: Add tests and install targets if needed.
-include(CTest)
 
-# does the application run
-add_test(NAME Runs COMMAND CMake_VS_Testing2)
+add_subdirectory(tests)
