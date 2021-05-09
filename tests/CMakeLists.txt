@@ -1,9 +1,10 @@
 
-include(CTest)
+cmake_minimum_required(VERSION 3.15)
 include(GoogleTest)
 include(FetchContent)
 
 enable_testing()
+
 
 FetchContent_Declare(
   googletest
@@ -35,7 +36,4 @@ set_target_properties(gmock_main PROPERTIES FOLDER extern)
 
 add_executable(UnitTest unit_test.cpp)
 target_link_libraries(UnitTest gtest gmock gtest_main)
-gtest_discover_tests(UnitTest)
-
-# does the application run
-add_test(NAME It_Runs_Without_Segfault COMMAND ${PROJECT_NAME})
+add_test(AllTests UnitTest)
