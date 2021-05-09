@@ -1,5 +1,6 @@
 
 cmake_minimum_required(VERSION 3.15)
+
 include(GoogleTest)
 include(FetchContent)
 
@@ -40,4 +41,3 @@ target_compile_features(UnitTest PUBLIC cxx_std_17)
 target_link_libraries(UnitTest gtest gmock gtest_main object)
 
 add_test(AllTests UnitTest)
-gtest_discover_tests(UnitTest)

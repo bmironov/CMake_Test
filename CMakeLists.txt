@@ -3,7 +3,8 @@
 #
 cmake_minimum_required (VERSION 3.15)
 
-project ("CMake_VS_Testing" VERSION 0.1.0)
+
+project ("CMake_Test" VERSION 0.1.2)
 
 set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 set(THREADS_PREFER_PTHREAD_FLAG TRUE)
