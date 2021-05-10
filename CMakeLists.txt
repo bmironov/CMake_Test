@@ -6,6 +6,10 @@ cmake_minimum_required (VERSION 3.15)
 
 project ("CMake_Test" VERSION 0.1.2)
 
+# We have to add CTest in root CMakeLists.txt in order to discover all tests
+# in all subdirectories of the whole project
+include(CTest)
+
 set(CMAKE_THREAD_PREFER_PTHREAD TRUE)
 set(THREADS_PREFER_PTHREAD_FLAG TRUE)
 find_package(Threads REQUIRED)
