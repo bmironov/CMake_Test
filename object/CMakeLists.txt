@@ -17,14 +17,8 @@ target_include_directories(${PROJECT_NAME}
     PUBLIC ${PROJECT_SOURCE_DIR}/include)
 
 
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD 
-  COMMAND "${CMAKE_COMMAND}" -E copy 
-     "$<TARGET_FILE:object>"
-     "../apps/$<TARGET_FILE_NAME:object>" 
-  COMMENT "Copying to output directory")
+# Copy library to apps build directory
+file(COPY "${PROJECT_BINARY_DIR}/${LIBRARY_OUTPUT_NAME}" DESTINATION "${PROJECT_BINARY_DIR}/../apps/")
 
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD 
-  COMMAND "${CMAKE_COMMAND}" -E copy 
-     "$<TARGET_FILE:object>"
-     "../tests/$<TARGET_FILE_NAME:object>" 
-  COMMENT "Copying to tests directory")
+# Copy library to tests build directory
+file(COPY "${PROJECT_BINARY_DIR}/${LIBRARY_OUTPUT_NAME}" DESTINATION "${PROJECT_BINARY_DIR}/../tests/")

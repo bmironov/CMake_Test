@@ -8,18 +8,18 @@ enable_testing()
 
 
 FetchContent_Declare(
-  googletest
-  GIT_REPOSITORY https://github.com/google/googletest.git
-  GIT_TAG        release-1.10.0
+    googletest
+    GIT_REPOSITORY https://github.com/google/googletest.git
+    GIT_TAG        release-1.10.0
 )
 
 FetchContent_GetProperties(googletest)
 if(NOT googletest_POPULATED)
-  FetchContent_Populate(googletest)
-  if(MSVC)
-    add_compile_options(/MD$<$<CONFIG:Debug>:d>)
-  endif()   # MSVC
-  add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
+    FetchContent_Populate(googletest)
+    if(MSVC)
+        add_compile_options(/MD$<$<CONFIG:Debug>:d>)
+    endif()   # MSVC
+    add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
 endif()     # NOT googletest_POPULATED
 
 
@@ -35,9 +35,11 @@ set_target_properties(gmock PROPERTIES FOLDER extern)
 set_target_properties(gmock_main PROPERTIES FOLDER extern)
 
 
-add_executable(UnitTest "main_Test.cpp" "object_Test.cpp" "objectTest.h" "objectTest.cpp")
+add_executable(UnitTest
+    "main_Test.cpp"
+    "objectTest.h" "objectTest.cpp" "object_Test.cpp"
+)
 target_compile_features(UnitTest PUBLIC cxx_std_17)
 
 target_link_libraries(UnitTest gtest gmock gtest_main object)
-
-add_test(AllTests UnitTest)
+gtest_discover_tests(UnitTest)
