@@ -33,7 +33,8 @@ int main(int, char**) {
         << "  version: " << PROJECT_VERSION << std::endl;
     std::cout << "Major version: " << PROJECT_VERSION_MAJOR
         << "  Minor version: " << PROJECT_VERSION_MINOR
-        << "  Patch version: " << PTOJECT_VERSION_PATCH << std::endl;
+        << "  Patch version: " << PROJECT_VERSION_PATCH
+        << "  Tweak version: " << PROJECT_VERSION_TWEAK << std::endl;
 
     spawnThreads();
 
