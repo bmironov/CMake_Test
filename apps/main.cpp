@@ -1,4 +1,5 @@
 
+#include <atomic>
 #include <thread>
 #include <iostream>
 #include <vector>
@@ -6,13 +7,25 @@
 #include "object.h"
 
 
+std::atomic_flag lock = ATOMIC_FLAG_INIT;
+
+
 void doSomething(int id) {
-    std::cout << id << std::endl;
+
+    // acquire lock
+    while (lock.test_and_set(std::memory_order_acquire)) {}
+
+    std::cout << "# " << id << std::endl;
+
+    // release lock
+    lock.clear(std::memory_order_release);
 }
 
 
 void spawnThreads() {
     std::vector<std::thread> threads;
+
+    std::cout << "Spawning " << std::thread::hardware_concurrency() << " threads:" << std::endl;
 
     // spawn n threads:
     for (unsigned int i = 0; i < std::thread::hardware_concurrency(); i++) {
