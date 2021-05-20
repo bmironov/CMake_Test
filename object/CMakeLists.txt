@@ -3,12 +3,13 @@
 cmake_minimum_required(VERSION 3.15)
 
 project(object)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 set(BUILD_SHARED_LIBS ON)
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS True)
 
 add_library(${PROJECT_NAME} src/object.cpp)
-target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 
 target_include_directories(${PROJECT_NAME} PUBLIC "${MAIN_BINARY_DIR}")
 
@@ -17,8 +18,14 @@ target_include_directories(${PROJECT_NAME}
     PUBLIC ${PROJECT_SOURCE_DIR}/include)
 
 
-# Copy library to apps build directory
-file(COPY "${PROJECT_BINARY_DIR}/${LIBRARY_OUTPUT_NAME}" DESTINATION "${PROJECT_BINARY_DIR}/../apps/")
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD 
+  COMMAND "${CMAKE_COMMAND}" -E copy_if_different
+     "$<TARGET_FILE:object>"
+     "../apps/$<TARGET_FILE_NAME:object>" 
+  COMMENT "Copying to apps directory")
 
-# Copy library to tests build directory
-file(COPY "${PROJECT_BINARY_DIR}/${LIBRARY_OUTPUT_NAME}" DESTINATION "${PROJECT_BINARY_DIR}/../tests/")
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD 
+  COMMAND "${CMAKE_COMMAND}" -E copy_if_different 
+     "$<TARGET_FILE:object>"
+     "../tests/$<TARGET_FILE_NAME:object>" 
+  COMMENT "Copying to tests directory")
