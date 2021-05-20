@@ -39,7 +39,10 @@ add_executable(UnitTest
     "main_Test.cpp"
     "objectTest.h" "objectTest.cpp" "object_Test.cpp"
 )
-target_compile_features(UnitTest PUBLIC cxx_std_17)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-target_link_libraries(UnitTest gtest gmock gtest_main object)
+list(APPEND EXTRA_LIBS object gtest gmock gtest_main)
+target_link_libraries(UnitTest ${EXTRA_LIBS})
+
 gtest_discover_tests(UnitTest)

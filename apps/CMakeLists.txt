@@ -5,14 +5,15 @@ include(CTest)
 
 enable_testing()
 
-project(main VERSION 0.1.2)
+project(main VERSION 0.1.2.3)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 add_executable(${PROJECT_NAME} main.cpp)
-target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
 
-# We need object.h and the object library
-target_link_libraries(${PROJECT_NAME}
-    PRIVATE object)
+list(APPEND EXTRA_LIBS object)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE ${EXTRA_LIBS})
 
 configure_file(main_config.h.in main_config.h)
 target_include_directories(${PROJECT_NAME} PUBLIC "${PROJECT_BINARY_DIR}")
@@ -24,6 +25,7 @@ find_package(Threads REQUIRED)
 
 target_link_libraries(${PROJECT_NAME} PUBLIC
 								${CMAKE_THREAD_LIBS_INIT})
+
 
 # does the application run
 add_test(NAME It_Runs_Without_Segfault COMMAND ${PROJECT_NAME})
