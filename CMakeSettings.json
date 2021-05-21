@@ -14,7 +14,7 @@
     {
       "name": "x64-Release",
       "generator": "Ninja",
-      "configurationType": "MinSizeRel",
+      "configurationType": "Release",
       "buildRoot": "${projectDir}\\out\\build\\${name}",
       "installRoot": "${projectDir}\\out\\install\\${name}",
       "cmakeCommandArgs": "",
@@ -34,13 +34,12 @@
       "ctestCommandArgs": "",
       "inheritEnvironments": [ "linux_x64" ],
       "wslPath": "${defaultWSLPath}",
-      "addressSanitizerRuntimeFlags": "detect_leaks=0",
-      "variables": []
+      "addressSanitizerRuntimeFlags": "detect_leaks=0"
     },
     {
       "name": "WSL-GCC-Release",
       "generator": "Ninja",
-      "configurationType": "MinSizeRel",
+      "configurationType": "Release",
       "buildRoot": "${projectDir}\\out\\build\\${name}",
       "installRoot": "${projectDir}\\out\\install\\${name}",
       "cmakeExecutable": "cmake",
@@ -49,8 +48,7 @@
       "ctestCommandArgs": "",
       "inheritEnvironments": [ "linux_x64" ],
       "wslPath": "${defaultWSLPath}",
-      "addressSanitizerRuntimeFlags": "detect_leaks=0",
-      "variables": []
+      "addressSanitizerRuntimeFlags": "detect_leaks=0"
     }
   ]
 }
