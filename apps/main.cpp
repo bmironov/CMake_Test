@@ -1,5 +1,7 @@
 
 #include <atomic>
+#include <chrono>
+#include <random>
 #include <thread>
 #include <iostream>
 #include <vector>
@@ -9,8 +11,15 @@
 
 std::atomic_flag lock = ATOMIC_FLAG_INIT;
 
+// Initialize random number generator
+std::mt19937_64 engine{ std::random_device{}() };
+std::uniform_int_distribution<> distribution{ 10, 1000 };
+
 
 void doSomething(int id) {
+
+    // emulate useful activity in the thread
+    std::this_thread::sleep_for(std::chrono::milliseconds{ distribution(engine) });
 
     // acquire lock
     while (lock.test_and_set(std::memory_order_acquire)) {}
