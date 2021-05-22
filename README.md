@@ -42,7 +42,7 @@ After that install everything required by Visual Studio 2019 to support CMake.
 or
 [Create a CMake Linux project in Visual Studio.](https://docs.microsoft.com/en-us/cpp/linux/cmake-linux-project?view=msvc-160)
 
-And last but not least: install newer GCC 9.3.1. Belo is pretty much all commands to prepare your CentOS 7:
+And last but not least: install newer GCC 9.3.1. Below is pretty much all commands to prepare your CentOS 7:
 ```
 yum install passwd sudo wget which
 yum install centos-release-scl
