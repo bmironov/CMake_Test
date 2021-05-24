@@ -26,7 +26,9 @@ find_package(Threads REQUIRED)
 target_link_libraries(${PROJECT_NAME} PUBLIC
 								${CMAKE_THREAD_LIBS_INIT})
 
+# How to avoid EBF test naming and group all CTests into single group in Visual Studio Test Explorer
+# https://developercommunity.visualstudio.com/t/cmake-weird-test-name-prefix/793209#T-N1227948
 
 # does the application run
-add_test(NAME It_Runs_Without_Segfault COMMAND ${PROJECT_NAME})
-
+add_test(NAME "app.Parameters.CoreTests.It_Runs_Without_Segfault" COMMAND ${PROJECT_NAME})
+add_test(NAME "app.Parameters.CoreTests.Check_Parameter"          COMMAND ${PROJECT_NAME} -?)
